@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cristhian Rojas – Portafolio de Datos</title>
+<meta name="description" content="Economista | Control de gestión, BI y automatización de datos. Proyectos interactivos, Oracle APEX, Power BI y Claude Code.">
+<meta property="og:title" content="Cristhian Rojas – Analista de Datos y Control de Gestión">
+<meta property="og:description" content="Portafolio interactivo: dashboards, migración a Oracle APEX, Power BI y Claude Code.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='5' fill='%230d2357'/%3E%3Crect x='4' y='14' width='5' height='8' rx='1' fill='%235b7cfa'/%3E%3Crect x='10.5' y='9' width='5' height='13' rx='1' fill='%23fff'/%3E%3Crect x='17' y='4' width='5' height='18' rx='1' fill='%235b7cfa'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* Paleta tomada de saileshraghunathan.com: azul marino #0d2357, #1f4fa3, #091a42, #16397f, fondo #f5f8ff, acento #5b7cfa */
+:root{--bg:#f5f8ff;--panel:#ffffff;--card:#ffffff;--line:rgba(17,40,89,.14);--tx:#0f172a;--mut:#475569;--ac:#0d2357;--hi:#1f4fa3;--btn:#0d2357;--btn-tx:#ffffff;--btn-h:#16397f;--net:31,79,163;--nav:#0d2357;--navtx:#fff}
+:root[data-theme=dark]{--bg:#091a42;--panel:#0d2357;--card:#0d2357;--line:rgba(255,255,255,.16);--tx:#f5f8ff;--mut:#b6c3e0;--ac:#f5f8ff;--hi:#7d98fb;--btn:#f5f8ff;--btn-tx:#091a42;--btn-h:#ffffff;--net:125,152,251;--nav:#0d2357;--navtx:#f5f8ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 Figtree,"Segoe UI",system-ui,sans-serif;transition:background .3s}
+#net{position:fixed;inset:0;z-index:0;pointer-events:none}
+a{color:var(--hi);text-decoration:none}
+.shell{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:28px 16px 40px;display:grid;grid-template-columns:80px 400px 1fr;gap:24px;align-items:start}
+/* barra de iconos */
+.rail{position:sticky;top:28px;display:grid;gap:16px}
+.rail a{width:80px;height:80px;border-radius:6px;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);color:var(--tx);transition:.2s}
+.rail a:hover{border-color:var(--hi)}
+.rail a.on{background:var(--btn);color:var(--btn-tx);border-color:var(--btn)}
+.rail svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* tarjeta de perfil */
+.profile{position:sticky;top:28px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;text-align:center}
+.photo{aspect-ratio:1/.96;border-radius:6px;background:linear-gradient(135deg,#1f4fa3,#0d2357);display:grid;place-items:center;font-size:84px;font-weight:800;color:#fff;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+.profile h3{font:italic 700 27px "Playfair Display",serif;margin:16px 0 6px}
+.profile p{font-size:14px;color:var(--mut);margin:0 6px 16px;line-height:1.5}
+.soc{display:flex;justify-content:center;gap:10px;margin-bottom:18px}
+.soc a{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--tx)}
+.soc a:hover{border-color:var(--hi);color:var(--hi)}.soc svg{width:22px;height:22px;fill:currentColor}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;background:var(--btn);color:var(--btn-tx);font-weight:700;font-size:15px;letter-spacing:.3px;border:0;cursor:pointer;text-transform:uppercase}
+.pill:hover{background:var(--btn-h);color:var(--btn-tx)}
+.copy{font-size:12.5px;color:var(--mut);margin-top:18px}
+/* principal */
+main{min-width:0}
+.lab{display:flex;align-items:center;gap:8px;font-weight:600;font-size:18px;margin:0 0 6px}
+.lab svg{width:26px;height:26px}
+.big{font-size:clamp(36px,5.4vw,68px);line-height:1.12;font-weight:700;margin:6px 0 22px;letter-spacing:-.5px}
+.big em,.em{font-family:"Playfair Display",serif;font-style:italic;color:var(--hi);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.icons{display:flex;flex-wrap:wrap;gap:30px;align-items:center;margin:8px 0 26px}
+.icons img,.icons svg{width:40px;height:40px;margin:0!important}
+.mi{display:inline-block;background:currentColor;-webkit-mask:var(--u) center/contain no-repeat;mask:var(--u) center/contain no-repeat}
+.bigbtn{display:flex;align-items:center;justify-content:center;gap:20px;width:100%;padding:44px 16px;background:var(--panel);border:1px solid var(--line);border-radius:8px;font-size:clamp(30px,4.4vw,52px);font-weight:700;color:var(--tx);cursor:pointer;margin-bottom:70px}
+.bigbtn:hover{border-color:var(--hi)}
+.bigbtn i{width:80px;height:80px;border-radius:50%;background:var(--line);display:grid;place-items:center;font-style:normal;font-size:30px}
+section{padding-top:40px;margin-bottom:54px;scroll-margin-top:16px}
+p.t{color:var(--mut);max-width:680px}
+.grid{display:grid;gap:14px}.g4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}.g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.g2{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+.stat b{display:block;font-size:28px;color:var(--hi)}.stat span{color:var(--mut);font-size:14px}
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:14px}
+.sk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 8px;text-align:center;transition:.2s}
+.sk:hover{transform:translateY(-4px);border-color:var(--hi)}
+.sk img,.sk .mi{width:44px;height:44px;display:block;margin:0 auto 8px}.sk span{font-size:14px;font-weight:500}
+.tag{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:3px 12px;margin:4px 4px 0 0;font-size:13px;color:var(--mut)}
+.tl{border-left:2px solid var(--line);padding-left:24px}
+.tl .it{position:relative;margin-bottom:26px}
+.tl .it:before{content:"";position:absolute;left:-32px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--hi);border:3px solid var(--bg)}
+.tl h4{margin:0;font-size:18px}.tl .org{color:var(--hi);font-size:14px;font-weight:600}.tl .dt{color:var(--mut);font-size:13px}
+.tl ul{margin:8px 0 0;padding-left:18px;color:var(--mut)}
+.proj{cursor:pointer;transition:.2s}.proj:hover{transform:translateY(-4px);border-color:var(--hi)}
+.proj h4{margin:6px 0;font-size:18px}.proj p{margin:0 0 10px;color:var(--mut);font-size:15px}.go{color:var(--hi);font-weight:700;font-size:14px}.pn{font-size:12px;color:var(--hi);letter-spacing:1px;font-weight:700}
+/* modal */
+#modal{position:fixed;inset:0;background:rgba(9,26,66,.72);display:none;z-index:100;overflow:auto;padding:30px 12px}
+#modal.on{display:block}
+.mbox{max-width:860px;margin:0 auto;background:var(--bg);border:1px solid var(--hi);border-radius:14px;padding:22px;position:relative}
+#mx{position:absolute;right:14px;top:8px;background:none;border:0;color:var(--tx);font-size:30px;cursor:pointer}
+.note{font-size:13px;color:var(--hi);font-weight:600;margin:6px 0 12px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+select{background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:8px}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
+.kpi div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px}.kpi b{font-size:21px;display:block}.kpi span{font-size:12px;color:var(--mut)}
+.bar{height:28px;border-radius:6px;background:var(--line);overflow:hidden;margin:6px 0 14px}
+.bar i{display:block;height:100%;width:0;background:#7a8aa6;color:#fff;font-size:13px;padding:4px 10px;white-space:nowrap;font-style:normal;transition:width 1.6s ease}
+.bar.n i{background:var(--hi);font-weight:700}
+.flow{display:flex;flex-wrap:wrap;gap:8px}
+.step{flex:1 1 120px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;cursor:pointer;text-align:center;font-weight:600;font-size:14px}
+.step.on{border-color:var(--hi);color:var(--hi)}
+.vph{aspect-ratio:16/9;display:grid;place-items:center;text-align:center;padding:20px;color:var(--mut);background:var(--card);border:1px dashed var(--hi);border-radius:12px}
+video{width:100%;border-radius:12px;aspect-ratio:16/9;background:#000}
+#theme{position:fixed;top:14px;right:16px;z-index:60;width:68px;height:34px;border-radius:99px;border:1px solid var(--line);background:var(--panel);cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:0 8px;color:var(--tx);font-size:15px}
+#theme:after{content:"";position:absolute;left:3px;top:3px;width:26px;height:26px;border-radius:50%;background:var(--btn);transition:.25s}
+:root[data-theme=dark] #theme:after{left:39px}
+#theme span{position:relative;z-index:1}
+.reveal{opacity:0;transform:translateY(18px);transition:.6s}.reveal.in{opacity:1;transform:none}
+/* móvil */
+@media(max-width:1000px){
+ .shell{grid-template-columns:1fr;padding-bottom:110px}
+ .profile{position:static}
+ .rail{position:fixed;z-index:70;left:0;right:0;bottom:0;top:auto;display:flex;justify-content:space-around;background:var(--panel);border-top:1px solid var(--line);padding:8px;gap:6px}
+ .rail a{width:56px;height:56px}.rail svg{width:26px;height:26px}
+ .bigbtn{padding:28px 12px}.bigbtn i{width:56px;height:56px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<canvas id="net"></canvas>
+<button id="theme" aria-label="Cambiar tema claro/oscuro"><span>☾</span><span>☀</span></button>
+
+<div class="shell">
+  <nav class="rail" id="rail" aria-label="Secciones">
+    <a href="#inicio" class="on" title="Inicio"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></a>
+    <a href="#sobre" title="Sobre mí y habilidades"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a>
+    <a href="#experiencia" title="Experiencia"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2M3 13h18"/></svg></a>
+    <a href="#proyectos" title="Proyectos"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></a>
+    <a href="#contacto" title="Contacto"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 01-11.6 7.1L3 21l1.9-6.2A8 8 0 1121 12z"/></svg></a>
+  </nav>
+
+  <aside class="profile">
+    <div class="photo" id="photo">CR</div>
+    <h3>Cristhian Rojas García</h3>
+    <p>Economista y analista de control de gestión con enfoque en datos, BI y automatización. Más de 5 años de experiencia laboral general; cerca de 3 años especializados en gestión, presupuesto y datos.</p>
+    <div class="soc">
+      <a href="https://www.linkedin.com/in/cristhian-victor-rojas-garcia-120a23186" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg></a>
+      <a href="mailto:cristhianrojasgarciav@gmail.com" aria-label="Correo"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1zm9 7.2L4.5 7v.1L12 13l7.5-5.9V7z"/></svg></a>
+      <a href="https://wa.me/51931283740" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.3.4-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.8.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
+    </div>
+    <a class="pill" href="CV_Cristhian_Rojas_FONAFE_Analista_Datos.pdf" download>Descargar CV ⭳</a>
+    <div class="copy">© 2026 Cristhian Rojas. Lima, Perú.</div>
+  </aside>
+
+  <main>
+    <section id="inicio" style="padding-top:0">
+      <div class="lab"><svg viewBox="0 0 26 26"><rect x="2" y="13" width="6" height="11" rx="1.5" fill="var(--hi)"/><rect x="10" y="7" width="6" height="17" rx="1.5" fill="var(--ac)"/><rect x="18" y="2" width="6" height="22" rx="1.5" fill="var(--hi)"/></svg>Hola, soy Cristhian, analista de datos y control de gestión</div>
+      <h1 class="big">Convirtiendo datos en <em>decisiones</em></h1>
+      <div class="icons" id="heroicons"></div>
+      <a class="bigbtn" href="#proyectos">Mis proyectos <i>↗</i></a>
+      <div class="grid g4" id="stats">
+        <div class="card stat"><b data-to="20" data-pre="3 GB → " data-suf=" MB">0</b><span>Modelo de BI optimizado al migrar las bases de datos</span></div>
+        <div class="card stat"><b data-to="4" data-pre="2 días → " data-suf=" h">0</b><span>Proceso de reportes en Cruz del Sur</span></div>
+        <div class="card stat"><b data-to="30" data-pre="2 días → " data-suf=" min">0</b><span>Consolidación de reportes en FONAFE</span></div>
+        <div class="card stat"><b data-to="1" data-pre="40 min → " data-suf=" min">0</b><span>Actualización de un reporte clave en FONAFE</span></div>
+      </div>
+    </section>
+
+    <section id="sobre" class="reveal">
+      <div class="lab"><svg viewBox="0 0 26 26"><rect x="2" y="13" width="6" height="11" rx="1.5" fill="var(--hi)"/><rect x="10" y="7" width="6" height="17" rx="1.5" fill="var(--ac)"/><rect x="18" y="2" width="6" height="22" rx="1.5" fill="var(--hi)"/></svg>Sobre mí</div>
+      <h2 class="big" style="font-size:clamp(32px,4.6vw,56px)">Abriendo camino con <em>disciplina</em> y datos</h2>
+      <p class="t">Soy economista con más de 5 años de experiencia laboral general, como fundador y gerente de mi propia empresa, en prácticas y en roles profesionales, y cerca de 3 años especializados en análisis de gestión, presupuesto y datos.</p>
+      <p class="t">Recopilo, ordeno y transformo información para construir reportes y dashboards que usan gerentes y jefaturas. Me enfoco en que los números coincidan con la fuente y en que los procesos manuales pasen a ser automáticos. Busco un rol de analista de datos o de gestión en una organización grande.</p>
+      <h3 style="margin:34px 0 14px;font-size:24px">Habilidades y <span class="em">herramientas</span></h3>
+      <div class="skills" id="skills"></div>
+      <div style="margin-top:18px"><span class="tag">Modelado de datos</span><span class="tag">DAX</span><span class="tag">Power Query (M)</span><span class="tag">ETL</span><span class="tag">Presupuesto y flujo de caja</span><span class="tag">Conciliaciones</span><span class="tag">Dashboards gerenciales</span><span class="tag">Linaje de datos</span><span class="tag">Automatización con IA</span></div>
+    </section>
+
+    <section id="experiencia" class="reveal">
+      <div class="lab"><svg viewBox="0 0 26 26"><rect x="2" y="13" width="6" height="11" rx="1.5" fill="var(--hi)"/><rect x="10" y="7" width="6" height="17" rx="1.5" fill="var(--ac)"/><rect x="18" y="2" width="6" height="22" rx="1.5" fill="var(--hi)"/></svg>Experiencia laboral</div>
+      <h2 class="big" style="font-size:clamp(32px,4.6vw,56px)">Del emprendimiento al <em>centro corporativo</em></h2>
+      <div class="tl">
+        <div class="it"><h4>Analista de Control de Gestión</h4><div class="org">Transportes Cruz del Sur · Lima</div><div class="dt">Mar 2026 – actualidad</div>
+          <ul><li>Reportes gerenciales para gerentes y cabezas de la organización.</li><li>Modelo de BI de ~3 GB a ~20 MB y proceso de 2 días a ~4 h.</li><li>Migración de Access/Excel a Oracle APEX y de DAX a Power Query con pruebas de paridad.</li><li>Reporte maestro en Python, mapa de linaje y agentes con Claude Code.</li></ul></div>
+        <div class="it"><h4>Practicante Profesional – Gerencia de Planeamiento y Control de Gestión</h4><div class="org">Corporación FONAFE · Lima</div><div class="dt">Ene 2025 – Ene 2026</div>
+          <ul><li>Dashboard reconocido por el área: consolidación de 2 días a 30 min y actualización de 40 min a 1 min.</li><li>Apoyo en presupuesto: ESF, ERI y flujo de caja; conciliaciones de información.</li></ul></div>
+        <div class="it"><h4>Asistente de Costos y Presupuestos</h4><div class="org">RIPCONCIV · Chincha</div><div class="dt">Oct – Dic 2024</div></div>
+        <div class="it"><h4>Asistente de Oficina Técnica</h4><div class="org">AJANI · Chincha</div><div class="dt">Nov 2023 – Ago 2024</div><ul><li>Reducción de ~5 % en costos de maquinaria.</li></ul></div>
+        <div class="it"><h4>Practicante de Compras y Logística</h4><div class="org">TERRA · Ayacucho</div><div class="dt">Ene 2022 – May 2023</div></div>
+        <div class="it"><h4>Gerente General y Fundador</h4><div class="org">Capital General E.I.R.L. (Ferretería El Maestro) · Huamanga</div><div class="dt">Oct 2020 – 2023</div>
+          <ul><li>Dirigí a 2 trabajadores; ventas diarias de S/ 300–400.</li><li>Venta formal de la empresa por S/ 60,000, con cambio de representante legal.</li></ul></div>
+      </div>
+      <h3 style="margin:34px 0 14px;font-size:24px">Formación y <span class="em">certificaciones</span></h3>
+      <div class="grid g3">
+        <div class="card"><b>Claude Code 101</b><div class="t" style="font-size:14px;color:var(--mut)">Claude Academy – Anthropic · Sep 2026</div></div>
+        <div class="card"><b>Gestión de Base de Datos con SQL</b><div style="color:var(--mut);font-size:14px">MySQL, PostgreSQL y SQL Server · Programa Perú Digital (Lima Educa, RPCC, Skill) · 2025</div></div>
+        <div class="card"><b>Curso de Python</b><div style="color:var(--mut);font-size:14px">2025</div></div>
+        <div class="card"><b>Especialización en Presupuestos y Flujos de Caja</b><div style="color:var(--mut);font-size:14px">Universidad de Lima · 2025</div></div>
+        <div class="card"><b>Bachiller en Economía</b><div style="color:var(--mut);font-size:14px">Universidad San Ignacio de Loyola · 2019–2023 · Tercio superior</div></div>
+        <div class="card"><b>LIFE Perú – Liderazgo</b><div style="color:var(--mut);font-size:14px">2023–2024</div></div>
+      </div>
+      <p class="t" style="margin-top:14px">Idiomas: español nativo · inglés intermedio · quechua básico.</p>
+    </section>
+
+    <section id="proyectos" class="reveal">
+      <div class="lab"><svg viewBox="0 0 26 26"><rect x="2" y="13" width="6" height="11" rx="1.5" fill="var(--hi)"/><rect x="10" y="7" width="6" height="17" rx="1.5" fill="var(--ac)"/><rect x="18" y="2" width="6" height="22" rx="1.5" fill="var(--hi)"/></svg>Proyectos</div>
+      <h2 class="big" style="font-size:clamp(32px,4.6vw,56px)">Mis trabajos, <em>en acción</em></h2>
+      <p class="t">Toca una tarjeta para ver la demo. Todas usan datos ficticios: no muestran información de ninguna empresa.</p>
+      <div class="grid g3" id="projs"></div>
+      <h3 style="margin:34px 0 14px;font-size:24px">Video de <span class="em">presentación</span></h3>
+      <div class="vph" id="vph">Video próximamente<br><small>(guardar como presentacion.mp4 junto a esta página)</small></div>
+    </section>
+
+    <section id="contacto" class="reveal">
+      <div class="lab"><svg viewBox="0 0 26 26"><rect x="2" y="13" width="6" height="11" rx="1.5" fill="var(--hi)"/><rect x="10" y="7" width="6" height="17" rx="1.5" fill="var(--ac)"/><rect x="18" y="2" width="6" height="22" rx="1.5" fill="var(--hi)"/></svg>Contacto</div>
+      <h2 class="big" style="font-size:clamp(32px,4.6vw,56px)">Hablemos de tu próximo <em>proyecto</em></h2>
+      <p class="t">Disponible para nuevas oportunidades como analista de datos y de gestión.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
+        <a class="pill" href="mailto:cristhianrojasgarciav@gmail.com" style="text-transform:none">cristhianrojasgarciav@gmail.com</a>
+        <a class="pill" href="https://wa.me/51931283740" target="_blank" rel="noopener" style="text-transform:none">WhatsApp 931 283 740</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="modal"><div class="mbox"><button id="mx" aria-label="Cerrar">×</button><div id="mc"></div></div></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+// ---- tema claro/oscuro
+try{const t=localStorage.getItem('tema');if(t)document.documentElement.dataset.theme=t}catch(e){}
+$('#theme').onclick=()=>{const d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('tema',n)}catch(e){}};
+// ---- fondo de red (partículas), estático si se prefiere menos movimiento
+(function(){const c=$('#net'),x=c.getContext('2d');let W,H,pts=[];const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ function size(){W=c.width=innerWidth;H=c.height=innerHeight;const n=Math.min(70,Math.floor(W*H/22000));pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25}))}
+ function draw(){x.clearRect(0,0,W,H);const rgb=css('--net');
+  pts.forEach(p=>{if(!still){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1}});
+  for(let i=0;i<pts.length;i++){for(let j=i+1;j<pts.length;j++){const a=pts[i],b=pts[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<150){x.strokeStyle=`rgba(${rgb},${.22*(1-d/150)})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
+   x.fillStyle=`rgba(${rgb},.35)`;x.beginPath();x.arc(pts[i].x,pts[i].y,1.8,0,7);x.fill()}
+  if(!still)requestAnimationFrame(draw)}
+ addEventListener('resize',()=>{size();if(still)draw()});size();draw()})();
+// ---- aparición y navegación activa
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.06});
+document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
+const links=[...document.querySelectorAll('#rail a')];
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('main section').forEach(s=>so.observe(s));
+// ---- foto opcional
+const im=new Image();im.alt='Cristhian Rojas';im.onload=()=>{$('#photo').textContent='';$('#photo').appendChild(im)};im.src='foto.jpg';
+// ---- contadores
+document.querySelectorAll('#stats b').forEach(el=>{const to=+el.dataset.to;let t0=null;
+ const f=t=>{t0??=t;const p=Math.min((t-t0)/1200,1);el.textContent=el.dataset.pre+Math.round(to*p)+el.dataset.suf;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)});
+// ---- iconos (descargados en /icons). Los "m:" son monocromos con color propio.
+const IC=[['Excel','m:microsoftexcel:#217346'],['Power BI','powerbi.svg'],['SQL Server','microsoftsqlserver-plain.svg'],['MySQL','mysql-original.svg'],['PostgreSQL','postgresql-original.svg'],['Oracle','oracle-original.svg'],['Python','python-original.svg'],['R','r-original.svg'],['Pandas','pandas-original.svg'],['Claude','m:claude:#D97757'],['Power Automate','m:powerautomate:#0066FF'],['SAP','m:sap:#0FAAFF'],['Obsidian','m:obsidian:#7C3AED'],['Git','git-original.svg']];
+const PATHS={"claude":"m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z","microsoftexcel":"M23 1.5q.41 0 .7.3.3.29.3.7v19q0 .41-.3.7-.29.3-.7.3H7q-.41 0-.7-.3-.3-.29-.3-.7V18H1q-.41 0-.7-.3-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h5V2.5q0-.41.3-.7.29-.3.7-.3zM6 13.28l1.42 2.66h2.14l-2.38-3.87 2.34-3.8H7.46l-1.3 2.4-.05.08-.04.09-.64-1.28-.66-1.29H2.59l2.27 3.82-2.48 3.85h2.16zM14.25 21v-3H7.5v3zm0-4.5v-3.75H12v3.75zm0-5.25V7.5H12v3.75zm0-5.25V3H7.5v3zm8.25 15v-3h-6.75v3zm0-4.5v-3.75h-6.75v3.75zm0-5.25V7.5h-6.75v3.75zm0-5.25V3h-6.75v3Z","powerautomate":"m20.079 7.235 3.666 4.097c.34.38.34.956 0 1.336l-7.63 8.528c-.19.213-.462.334-.748.334H7.289l12.79-14.295ZM6.789 21.53H1.005c-.867 0-1.326-1.025-.748-1.671L15.748 2.545c.139.057.265.145.367.259l3.631 4.058a.478.478 0 0 0-.039.039L6.916 21.197a.497.497 0 0 0-.127.333Zm8.356-19.06-8.192 9.155L.257 4.141c-.578-.646-.119-1.671.748-1.671h14.14Z","sap":"M0 6.064v11.872h12.13L24 6.064zm3.264 2.208h.005c.863.001 1.915.245 2.676.633l-.82 1.43c-.835-.404-1.255-.442-1.73-.467-.708-.038-1.064.215-1.069.488-.007.332.669.633 1.305.838.964.306 2.19.715 2.377 1.9L7.77 8.437h2.046l2.064 5.576-.007-5.575h2.37c2.257 0 3.318.764 3.318 2.519 0 1.575-1.09 2.514-2.936 2.514h-.763l-.01 2.094-3.588-.003-.25-.908c-.37.122-.787.189-1.23.189-.456 0-.885-.071-1.263-.2l-.358.919-2 .006.09-.462c-.029.025-.057.05-.087.074-.535.43-1.208.629-2.037.644l-.213.002a5.075 5.075 0 0 1-2.581-.675l.73-1.448c.79.467 1.286.572 1.956.558.347-.007.598-.07.761-.239a.557.557 0 0 0 .156-.369c.007-.376-.53-.553-1.185-.756-.531-.164-1.135-.389-1.606-.735-.559-.41-.825-.924-.812-1.65a1.99 1.99 0 0 1 .566-1.377c.519-.537 1.357-.863 2.363-.863zm10.597 1.67v1.904h.521c.694 0 1.247-.23 1.248-.964 0-.709-.554-.94-1.248-.94zm-5.087.767l-.748 2.362c.223.085.481.133.757.133.268 0 .52-.047.742-.126l-.736-2.37z","obsidian":"M19.355 18.538a68.967 68.959 0 0 0 1.858-2.954.81.81 0 0 0-.062-.9c-.516-.685-1.504-2.075-2.042-3.362-.553-1.321-.636-3.375-.64-4.377a1.707 1.707 0 0 0-.358-1.05l-3.198-4.064a3.744 3.744 0 0 1-.076.543c-.106.503-.307 1.004-.536 1.5-.134.29-.29.6-.446.914l-.31.626c-.516 1.068-.997 2.227-1.132 3.59-.124 1.26.046 2.73.815 4.481.128.011.257.025.386.044a6.363 6.363 0 0 1 3.326 1.505c.916.79 1.744 1.922 2.415 3.5zM8.199 22.569c.073.012.146.02.22.02.78.024 2.095.092 3.16.29.87.16 2.593.64 4.01 1.055 1.083.316 2.198-.548 2.355-1.664.114-.814.33-1.735.725-2.58l-.01.005c-.67-1.87-1.522-3.078-2.416-3.849a5.295 5.295 0 0 0-2.778-1.257c-1.54-.216-2.952.19-3.84.45.532 2.218.368 4.829-1.425 7.531zM5.533 9.938c-.023.1-.056.197-.098.29L2.82 16.059a1.602 1.602 0 0 0 .313 1.772l4.116 4.24c2.103-3.101 1.796-6.02.836-8.3-.728-1.73-1.832-3.081-2.55-3.831zM9.32 14.01c.615-.183 1.606-.465 2.745-.534-.683-1.725-.848-3.233-.716-4.577.154-1.552.7-2.847 1.235-3.95.113-.235.223-.454.328-.664.149-.297.288-.577.419-.86.217-.47.379-.885.46-1.27.08-.38.08-.72-.014-1.043-.095-.325-.297-.675-.68-1.06a1.6 1.6 0 0 0-1.475.36l-4.95 4.452a1.602 1.602 0 0 0-.513.952l-.427 2.83c.672.59 2.328 2.316 3.335 4.711.09.21.175.43.253.653z"};
+const tag=(n,s)=>s.startsWith('m:')?(([,f,c])=>`<svg viewBox="0 0 24 24" role="img" aria-label="${n}" style="width:44px;height:44px;display:block;margin:0 auto 8px;fill:${c}"><path d="${PATHS[f]}"/></svg>`)(s.split(':')):`<img src="icons/${s}" alt="${n}" loading="lazy">`;
+['Python','R','MySQL','PostgreSQL','Oracle','SQL Server','Power BI','Excel','Claude'].forEach(n=>{const s=IC.find(i=>i[0]===n);$('#heroicons').insertAdjacentHTML('beforeend',tag(n,s[1]))});
+IC.forEach(([n,s])=>$('#skills').insertAdjacentHTML('beforeend',`<div class="sk">${tag(n,s)}<span>${n}</span></div>`));
+fetch('presentacion.mp4',{method:'HEAD'}).then(r=>{if(r.ok)$('#vph').outerHTML='<video controls playsinline src="presentacion.mp4"></video>'}).catch(()=>{});
+
+// ---------- proyectos / modal ----------
+let chart=null;
+const P=[
+ {n:'01',t:'Dashboard de presupuesto interactivo',d:'Presupuesto contra ejecución con filtros por área y mes.',f:dash},
+ {n:'02',t:'Migración Access/Excel → Oracle APEX',d:'Flujo de seis pasos con compuerta de paridad de datos.',f:flujo},
+ {n:'03',t:'Optimización del modelo de BI',d:'De ~3 GB a ~20 MB y de 2 días a ~4 horas.',f:antes},
+ {n:'04',t:'Reporte maestro en Python y linaje',d:'Un reporte consolidado por código y un mapa de dónde sale cada dato.',f:py},
+ {n:'05',t:'Agentes con Claude Code',d:'Agentes y skills que migran, validan y documentan.',f:agentes}];
+P.forEach((p,i)=>$('#projs').insertAdjacentHTML('beforeend',`<div class="card proj" data-i="${i}"><div class="pn">PROYECTO ${p.n}</div><h4>${p.t}</h4><p>${p.d}</p><span class="go">Ver demo →</span></div>`));
+document.querySelectorAll('.proj').forEach(c=>c.onclick=()=>abrir(+c.dataset.i));
+function abrir(i){const p=P[i];$('#mc').innerHTML=`<div class="pn">PROYECTO ${p.n}</div><h2 style="margin:4px 0 8px">${p.t}</h2>`;$('#modal').classList.add('on');document.body.style.overflow='hidden';p.f($('#mc'))}
+function cerrar(){$('#modal').classList.remove('on');document.body.style.overflow='';if(chart){chart.destroy();chart=null}}
+$('#mx').onclick=cerrar;$('#modal').onclick=e=>{if(e.target.id==='modal')cerrar()};document.onkeydown=e=>{if(e.key==='Escape')cerrar()};
+
+function dash(box){
+ const M=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],A=['Todas','Operaciones','Comercial','Finanzas','Logística'];
+ let s=7;const r=()=>(s=(s*9301+49297)%233280)/233280,D={};
+ A.slice(1).forEach((a,k)=>{const b=[420,300,180,260][k];D[a]=M.map(()=>{const p=Math.round(b*(.9+.2*r()));return{p,e:Math.round(p*(.85+.3*r()))}})});
+ box.insertAdjacentHTML('beforeend',`<p class="note">⚠ Datos 100 % ficticios. No corresponden a ninguna empresa.</p>
+ <div class="ctl"><select id="fa">${A.map(a=>`<option>${a}</option>`)}</select><select id="fm">${M.map((m,i)=>`<option value="${i}">Hasta ${m}</option>`)}</select><select id="fv"><option value="m">Mensual</option><option value="a">Acumulado</option></select></div>
+ <div class="kpi" id="kp"></div><canvas id="cv"></canvas>`);
+ $('#fm').value=11;const tx=css('--mut'),gr='rgba(127,140,170,.2)';
+ chart=new Chart($('#cv'),{type:'bar',data:{labels:[],datasets:[{label:'Presupuesto (miles S/)',data:[],backgroundColor:css('--hi')},{label:'Ejecutado (miles S/)',data:[],backgroundColor:'#94a3b8'}]},options:{plugins:{legend:{labels:{color:tx}}},scales:{x:{ticks:{color:tx},grid:{color:gr}},y:{ticks:{color:tx},grid:{color:gr}}}}});
+ const ser=a=>{const l=a==='Todas'?A.slice(1).map(x=>D[x]):[D[a]];return M.map((_,m)=>({p:l.reduce((t,x)=>t+x[m].p,0),e:l.reduce((t,x)=>t+x[m].e,0)}))};
+ const up=()=>{const h=+$('#fm').value,ac=$('#fv').value==='a';let d=ser($('#fa').value).slice(0,h+1);const tot=d.reduce((t,x)=>({p:t.p+x.p,e:t.e+x.e}),{p:0,e:0});
+  if(ac){let P=0,E=0;d=d.map(x=>({p:P+=x.p,e:E+=x.e}))}
+  chart.data.labels=M.slice(0,h+1);chart.data.datasets[0].data=d.map(x=>x.p);chart.data.datasets[1].data=d.map(x=>x.e);chart.update();
+  const pc=tot.e/tot.p*100;$('#kp').innerHTML=`<div><b>${tot.p.toLocaleString()}</b><span>Presupuesto</span></div><div><b>${tot.e.toLocaleString()}</b><span>Ejecutado</span></div><div><b>${pc.toFixed(1)} %</b><span>Avance</span></div><div><b style="color:${pc>100?'#e70044':'var(--hi)'}">${(tot.e-tot.p).toLocaleString()}</b><span>Desvío</span></div>`};
+ ['#fa','#fm','#fv'].forEach(x=>$(x).onchange=up);up()}
+
+function flujo(box){
+ const S=[['1. Fuentes','Access, Excel y archivos manuales dispersos. Se inventarían y se detecta quién usa cada uno antes de tocar nada.'],['2. Carga (STG)','Tablas de paso en Oracle, con un paquete de carga por fuente. Los datos se tipan al cargar, no al leer.'],['3. Capa estándar','Dimensiones y tablas limpias y reutilizables por todos los reportes, con claves validadas.'],['4. Vista de reporte','Una vista por reporte que entrega exactamente lo que necesita el modelo de BI.'],['5. Paridad','Compuerta de control: los totales del modelo nuevo deben coincidir con el original antes de cambiar la conexión.'],['6. Power BI','La lógica pasa de DAX pesado a Power Query y base de datos: de ~3 GB a ~20 MB.']];
+ box.insertAdjacentHTML('beforeend','<p class="note">Toca cada paso.</p><div class="flow" id="fl"></div><div class="card" id="fd" style="margin-top:12px;min-height:80px"></div>');
+ S.forEach(p=>{const b=document.createElement('div');b.className='step';b.textContent=p[0];b.onclick=()=>{document.querySelectorAll('.step').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('#fd').innerHTML=`<b>${p[0]}</b><p style="margin:6px 0 0;color:var(--mut)">${p[1]}</p>`};$('#fl').appendChild(b)});
+ $('.step').click()}
+
+function antes(box){
+ box.insertAdjacentHTML('beforeend',`<p class="note">Cifras del proyecto real, sin datos de la empresa.</p>
+ <div class="card"><b>Tamaño del modelo de BI</b><div class="bar"><i data-w="100">Antes: ~3 GB</i></div><div class="bar n"><i data-w="3" style="min-width:120px">Después: ~20 MB</i></div></div>
+ <div class="card" style="margin-top:12px"><b>Tiempo del proceso de reportes</b><div class="bar"><i data-w="100">Antes: ~2 días</i></div><div class="bar n"><i data-w="8" style="min-width:120px">Después: ~4 h</i></div></div>
+ <button class="pill" id="rp" style="margin-top:12px">▶ Repetir</button>`);
+ const go=()=>document.querySelectorAll('#mc .bar i').forEach(i=>{i.style.width='0';setTimeout(()=>i.style.width=i.dataset.w+'%',60)});$('#rp').onclick=go;go()}
+
+function py(box){box.insertAdjacentHTML('beforeend',`<div class="grid g2"><div class="card"><b>Reporte maestro</b><p style="color:var(--mut);margin:6px 0 0">Un reporte consolidado generado por código en Python: reproducible, sin pasos manuales y con los mismos números que la fuente.</p></div><div class="card"><b>Linaje de datos</b><p style="color:var(--mut);margin:6px 0 0">Un mapa que muestra de qué fuente sale cada tabla y qué reportes la usan, para saber a quién afecta un cambio antes de hacerlo.</p></div></div><p class="note" style="margin-top:14px">Ejemplo ilustrativo, sin datos reales.</p><div class="flow"><div class="step">Fuente</div><div class="step">Tabla</div><div class="step">Vista RPT</div><div class="step">Reporte</div></div>`)}
+
+function agentes(box){box.insertAdjacentHTML('beforeend',`<p class="note">Certificación Claude Code 101 – Anthropic (sep 2026)</p><div class="grid g2"><div class="card"><b>Agentes y skills</b><p style="color:var(--mut);margin:6px 0 0">Agentes especializados que migran fuentes, validan paridad entre modelos y documentan cada sesión.</p></div><div class="card"><b>Memoria y hooks</b><p style="color:var(--mut);margin:6px 0 0">Memoria de proyecto y reglas automáticas que evitan repetir errores.</p></div><div class="card"><b>Metodología</b><p style="color:var(--mut);margin:6px 0 0">Flujo planificar → construir → revisar, con compuertas de control antes de aprobar.</p></div></div>`)}
+</script>
+</body>
+</html>
