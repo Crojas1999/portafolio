@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -205,8 +205,8 @@ video{width:100%;border-radius:12px;aspect-ratio:16/9;background:#000}
 const $=s=>document.querySelector(s);
 const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 // ---- tema claro/oscuro
-try{const t=localStorage.getItem('tema');if(t)document.documentElement.dataset.theme=t}catch(e){}
-$('#theme').onclick=()=>{const d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('tema',n)}catch(e){}};
+// siempre abre en modo noche; el botón solo cambia la visita actual
+$('#theme').onclick=()=>{const d=document.documentElement;d.dataset.theme=d.dataset.theme==='dark'?'light':'dark'};
 // ---- fondo de red (partículas), estático si se prefiere menos movimiento
 (function(){const c=$('#net'),x=c.getContext('2d');let W,H,pts=[];const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
  function size(){W=c.width=innerWidth;H=c.height=innerHeight;const n=Math.min(70,Math.floor(W*H/22000));pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25}))}
